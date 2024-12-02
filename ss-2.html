@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sewa Vila</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background: #6da0e7;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .villa-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .villa-info img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .details {
+            flex: 1;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #6da0e7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6da0e7;
+        }
+
+        .confirmation {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e7f5e9;
+            border: 1px solid #d4eed8;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sewa Vila Mewah</h1>
+</header>
+
+<div class="container">
+    <div class="villa-info">
+        <div class="details">
+            <h2>Vila Bukit Bedugul</h2>
+            <p>Lokasi: Bedugul , Bali</p>
+            <p>Harga: Rp 2.500.000/malam</p>
+            <p>Fasilitas: Kolam renang, Wi-Fi gratis, AC, Dapur lengkap</p>
+        </div>
+    </div>
+
+    <h3>Formulir Pemesanan</h3>
+    <form id="bookingForm">
+        <label for="name">Nama Lengkap:</label>
+        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+
+        <label for="checkin">Tanggal Check-in:</label>
+        <input type="date" id="checkin" name="checkin" required>
+
+        <label for="checkout">Tanggal Check-out:</label>
+        <input type="date" id="checkout" name="checkout" required>
+
+        <label for="guests">Jumlah Tamu:</label>
+        <select id="guests" name="guests" required>
+            <option value="1">1 Tamu</option>
+            <option value="2">2 Tamu</option>
+            <option value="3">3 Tamu</option>
+            <option value="4">4 Tamu</option>
+            <option value="5">5+ Tamu</option>
+        </select>
+
+        <label for="message">Pesan Tambahan:</label>
+        <textarea id="message" name="message" rows="4" placeholder="Masukkan pesan tambahan"></textarea>
+
+        <button type="button" onclick="submitForm()">Kirim Pemesanan</button>
+    </form>
+
+    <div id="confirmation" class="confirmation" style="display: none;">
+        <h3>Konfirmasi Pemesanan</h3>
+        <p id="confirmationDetails"></p>
+    </div>
+</div>
+
+<script>
+    function submitForm() {
+        // Ambil data dari formulir
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const checkin = document.getElementById("checkin").value;
+        const checkout = document.getElementById("checkout").value;
+        const guests = document.getElementById("guests").value;
+        const message = document.getElementById("message").value;
+
+        // Validasi sederhana
+        if (!name || !email || !checkin || !checkout || !guests) {
+            alert("Harap lengkapi semua data!");
+            return;
+        }
+
+        // Tampilkan konfirmasi
+        const confirmationDetails = `
+            <strong>Nama:</strong> ${name}<br>
+            <strong>Email:</strong> ${email}<br>
+            <strong>Check-in:</strong> ${checkin}<br>
+            <strong>Check-out:</strong> ${checkout}<br>
+            <strong>Jumlah Tamu:</strong> ${guests}<br>
+            <strong>Pesan Tambahan:</strong> ${message || "Tidak ada"}<br>
+        `;
+        document.getElementById("confirmationDetails").innerHTML = confirmationDetails;
+        document.getElementById("confirmation").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
